@@ -1,0 +1,10 @@
+branch-defaults:
+  default:
+    environment: conversationstarter-dev
+global:
+  application_name: conversation_starter
+  default_ec2_keyname: null
+  default_platform: 64bit Amazon Linux 2015.09 v2.0.4 running Python 2.7
+  default_region: us-west-2
+  profile: takdeerkaur
+  sc: null
