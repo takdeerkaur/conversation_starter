@@ -1,6 +1,8 @@
 branch-defaults:
   default:
-    environment: conversationstarter-dev
+    environment: conversationstartergate
+  dev:
+    environment: conversationstartergate
 global:
   application_name: conversation_starter
   default_ec2_keyname: null
