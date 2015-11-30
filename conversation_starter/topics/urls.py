@@ -6,7 +6,9 @@ urlpatterns = [
 	url(r'^$', views.api_root),
     url(r'^topics/$', views.TopicList.as_view(), name='topic-list'),
     url(r'^topics/(?P<pk>[0-9]+)/$', views.TopicDetail.as_view(), name='topic-detail'),
-
+    url(r'^topics/entertainment/$', views.EntertainmentTopicList.as_view(), name='entertainment-topic-list'),
+    url(r'^topics/sports/$', views.SportsTopicList.as_view(), name='sports-topic-list'),
+    url(r'^topics/arts/$', views.ArtsTopicList.as_view(), name='arts-topic-list'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
