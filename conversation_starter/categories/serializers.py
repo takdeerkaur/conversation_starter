@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from topics.models import Topic
+from categories.models import Category
 # from django.contrib.auth.models import User
 
-class TopicSerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     # owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Topic
-        fields = ('url', 'topic_name', 'category',)
+        model = Category
+        fields = ('url', 'category_name',)
 
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
