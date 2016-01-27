@@ -28,6 +28,15 @@ class TopicList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
          serializer.save(category_id=self.request.data['category_id'])
 
+class RandomTopic(generics.ListAPIView):
+    serializer_class = TopicSerializer
+    
+    def get_queryset(self):
+        last = Topic.objects.count() - 1
+        # index = random.randint(0, last)
+        random = Topic.objects.all()[0]
+        return random
+
 class TopicDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
