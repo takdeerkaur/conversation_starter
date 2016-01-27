@@ -1,4 +1,6 @@
+import random
 from topics.models import Topic
+from categories.models import Category
 from topics.serializers import TopicSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -23,43 +25,23 @@ class TopicList(generics.ListCreateAPIView):
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     # def perform_create(self, serializer):
     # 	serializer.save(owner=self.request.user)
-
-
+    def perform_create(self, serializer):
+         serializer.save(category_id=self.request.data['category_id'])
 
 class TopicDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
-# TODO: Make the following lists by category sort dynamically, if possible. Does there really need to be a 
-# new view class / url for each different category?
-class EntertainmentTopicList(generics.ListAPIView):
+class TopicListByCategory(generics.ListAPIView):
     serializer_class = TopicSerializer
 
     def get_queryset(self):
         """
         This view should return a list of all the topics
-        under the Entertainment category.
+        under the given category.
         """
-        return Topic.objects.filter(category='ENT')
-
-class SportsTopicList(generics.ListAPIView):
-    serializer_class = TopicSerializer
-
-    def get_queryset(self):
-        """
-        This view should return a list of all the topics
-        under the Sports category.
-        """
-        return Topic.objects.filter(category='SPO')
-
-class ArtsTopicList(generics.ListAPIView):
-    serializer_class = TopicSerializer
-
-    def get_queryset(self):
-        """
-        This view should return a list of all the topics
-        under the Arts category.
-        """
-        return Topic.objects.filter(category='ART')
+        category_name = self.kwargs['category']
+        category = Category.objects.filter(category_name=category_name)
+        return Topic.objects.filter(category=category)
 

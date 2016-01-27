@@ -7,10 +7,11 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
     # owner = serializers.ReadOnlyField(source='owner.username')
     category = CategorySerializer(read_only=True)
     category_id = serializers.IntegerField(write_only=True)
+    category_name = serializers.CharField(read_only=True)
 
     class Meta:
         model = Topic
-        fields = ('topic_name', 'category', 'category_id')
+        fields = ('topic_name', 'category', 'category_id', 'category_name')
         read_only_fields = ('category_id',)
 
 
