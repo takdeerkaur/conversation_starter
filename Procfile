@@ -1,1 +1,1 @@
-web: python conversation_starter/manage.py runserver 0.0.0.0:8000
+web: gunicorn --pythonpath conversation_starter conversation_starter.wsgi
